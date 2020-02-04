@@ -1,125 +1,124 @@
 # Building-Cyber-Infrastructure-for-Researchers
-1.  Vision and Goals Of The Project
-<br />The system will be a cloud based infrastructure that runs code written in Python or R over specified data sets to create and compare models that predict ecological forecasts. High-Level Goals for this Project include:
 
--   Providing a web service with a simple user experience such that
-    researchers can submit code and periodically run it on data sets.
--   Developing infrastructure on the cloud using either VM or
-    containers to run code and balance workload.
--   Providing a user interface that allows for comparisons between
-    multiple models on the same data set along with comparisons of
-    models using periodic data sets in order to determine model
-    accuracy.
+### Team Members: Tian Chen, Donovan Jones, Komal Kango, Jing Song, Kristi Perreault 
+   <br/>	
 
-2.  Users/ Personas of the Project 
-<br />The system will be used by the end-users in the earth science department of BU. It targets only end-users, specifically ecological researchers. It does not target:
+## 1.  Vision and Goals Of The Project
 
--   Non-ecological Researchers
--   Advanced users with complex requirements beyond the scope of the project.
+<br/> The system will be a cloud based infrastructure that runs code written in Python or R over specified data sets to create and             compare models that predict ecological forecasts. High-Level Goals for this Project include:
 
-3.  Scope and Features of the Project
-<br />UI: an easy-to-use web interface for users
+   -   Providing a web service with a simple user experience such that researchers can submit code and periodically run it on data sets.
+   -   Developing infrastructure on the cloud using either VM or containers to run code and balance workload.
+   -   Providing a user interface that allows for comparisons between multiple models on the same data set along with comparisons of            models using periodic data sets in order to determine model accuracy.
+   <br/>
 
--   User registration and login
--   (Only) Administrator management of existing users
--   (Only) Administrator access to information about the current VM
-    cluster
--   Management of all previous logs of computations
--   Allows submission of new computation code
--   Code submitted by users either through a link to the container or
-    with code and libraries which are then put together into a container
-    by Docker Hub
--   Trigger set by users to start executing the code
--   Standardized visualization of output from running the code (extra
-    z-axis in the plot being the the confidence of prediction)
--   Comparison of different models over time on the same set of data
--   Accuracy measurement of the prediction model by comparing it with
-    real-time updated data
-    <br />
-<br />Orchestrator & Scheduler:
--   Analyze the submitted code and install code dependencies
--   Distribute code across different cloud platforms for computation 
-    to balance load
--   Monitor the availability of the VMs in the cluster, so that no 
-    code is sent to invalid VMs
--   Resend code to a new machine when one VM fails
-<br />
-<br />VM Environment: free
-    cloud serverless platform GENI & Chameleon
--   Install Openwhisk on a cluster of VMs (so that there is no need to
-    renew VM every week)
--   Openwhisk calls the cluster to run the code
--   Code distributed by O&S to run either on GENI edge nodes or
-    Chameleon cloud
-    <br />
-<br />Database Management: Store output of computation in the database (MongoDB) 
-<br />Security: provide secure storage of user data and computation output
+## 2.  Users/ Personas of the Project 
+<br/> The system will be used by the end-users in the earth science department of BU. It targets only end-users, specifically ecological       researchers. It does not target:
 
-4.  Solution Concept
-<img src="https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/solution%20concept.PNG">
-<br />The main problem for the system is the lack of a way to monitor it to tell which containers are full or have failed to run the code. So we plan to overhaul the web interface with a system for logging in that allows administrators to have access to the performance of the system. Once users sign in they will be presented with options based on their credentials. All users will be able to input data, code, and offline containers.
+   -   Non-ecological Researchers
+   -   Advanced users with complex requirements beyond the scope of the project.
+   <br/>
 
-5.  Acceptance Criteria
-<br />The minimum acceptance criteria is a single-running process which the code submitted by the user is taken by Openwhisk and distributed by O&S to run across different cloud serverless platforms and the output of computation is shown to the user on UI. Stretch goals are:
+## 3.  Scope and Features of the Project
+<br/> UI: an easy-to-use web interface for users
 
--   More visualization functionality for showing the computation output
--   Code storage optimization (close to data source? User, etc.)
--   Parallel Code Execution
+   -   User registration and login
+   -   (Only) Administrator management of existing users
+   -   (Only) Administrator access to information about the current VM cluster
+   -   Management of all previous logs of computations
+   -   Allows submission of new computation code
+   -   Code submitted by users either through a link to the container or with code and libraries which are then put together into a            container by Docker Hub
+   -   Trigger set by users to start executing the code
+   -   Standardized visualization of output from running the code (extra z-axis in the plot being the the confidence of prediction)
+   -   Comparison of different models over time on the same set of data
+   -   Accuracy measurement of the prediction model by comparing it with real-time updated data
+   <br/>
+    
+<br/> Orchestrator & Scheduler:
+   -   Analyze the submitted code and install code dependencies
+   -   Distribute code across different cloud platforms for computation to balance load
+   -   Monitor the availability of the VMs in the cluster, so that no code is sent to invalid VMs
+   -   Resend code to a new machine when one VM fails
+   <br/>
 
-6.  Release Planning
-<br />For full release plans, please visit the team’s project space:
-    https://tree.taiga.io/project/mosayyebzadeh-building-cyber-infrastructure-for-researchers/timeline
+<br/> VM Environment: free cloud serverless platform GENI & Chameleon
+   -   Install Openwhisk on a cluster of VMs (so that there is no need to renew VM every week)
+   -   Openwhisk calls the cluster to run the code
+   -   Code distributed by O&S to run either on GENI edge nodes or Chameleon cloud
+    <br/>
+    
+<br/>Database Management: Store output of computation in the database (MongoDB) 
 
-Release \#1 (due week 4) 
--   Project goals determined and understood 
--   Front end framework determined 
--   New project created & outlined 
-    -   User submission 
-    -   User registration/login 
-    -   Results display 
-    -   Admin system
+<br/>Security: provide secure storage of user data and computation output
+    <br/>
 
-Release \#2 (due week 6) 
--   Submission portal 
-    -   User can upload code in R in text box or file upload 
-    -   Data stored in MongoDB 
--   Userregistration/login 
-    -   User able to register for an account with email
-    -   User able to login 
--   Admin system 
-    -   Ability for admins to approve registration requests 
--   VM environment 
-    -   Install Openwhisk on a cluster
+## 4.  Solution Concept
+<img src="https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/solution%20concept.PNG"><br/>
 
-Release \#3 (due week 8) 
--   Submission portal
-    -   User can upload code in R via container link/code link 
--   Results display 
-    -   Data visualization results surfaced to user
--   Admin system
-    -   Manage accounts; add, delete, update users
--   Build O&S
-    -   Analyze the submitted code, install code dependencies
--   VM environment
-    -   Openwhisk calls the cluster to run the code
+<br/> The main problem for the system is the lack of a way to monitor it to tell which containers are full or have failed to run the           code. So we plan to overhaul the web interface with a system for logging in that allows administrators to have access to the             performance of the system. Once users sign in they will be presented with options based on their credentials. All users will be         able to input data, code, and offline containers.
+    <br/>
+    
+## 5.  Acceptance Criteria
+<br/> The minimum acceptance criteria is a single-running process which the code submitted by the user is taken by Openwhisk and               distributed by O&S to run across different cloud serverless platforms and the output of computation is shown to the user on UI.         Stretch goals are:
 
-Release \#4 (due week 10)
--   Submission portal
-    -   User can upload code in python
--   Results display
-    -   Data visualization results compared to different models
--   Admin system
-    -   View system health
--   O&S
-    -   Distribute code
-    -   Monitor VM availability
+   -   More visualization functionality for showing the computation output
+   -   Code storage optimization (close to data source? User, etc.)
+   -   Parallel Code Execution
 
-Release \#5 (due week 12)
--   Results display
-    -   Trigger set by users
-    -   Ability to view previous results
-    -   Real time data visualization
+## 6.  Release Planning
+<br/> For full release plans, please visit the team’s project space:
+      https://tree.taiga.io/project/mosayyebzadeh-building-cyber-infrastructure-for-researchers/timeline
 
-Release \#6 (due week 14) - TBD
+<br/> Release \#1 (due week 4) 
+   -   Project goals determined and understood 
+   -   Front end framework determined 
+   -   New project created & outlined 
+        -   User submission 
+        -   User registration/login 
+        -   Results display 
+        -   Admin system
 
-Release \#7 (due week 16) - TBD
+<br/> Release \#2 (due week 6) 
+   -   Submission portal 
+        -   User can upload code in R in text box or file upload 
+        -   Data stored in MongoDB 
+   -   Userregistration/login 
+        -   User able to register for an account with email
+        -   User able to login 
+   -   Admin system 
+        -   Ability for admins to approve registration requests 
+   -   VM environment 
+        -   Install Openwhisk on a cluster
+
+<br/> Release \#3 (due week 8) 
+   -   Submission portal
+        -   User can upload code in R via container link/code link 
+   -   Results display 
+        -   Data visualization results surfaced to user
+   -   Admin system
+        -   Manage accounts; add, delete, update users
+   -   Build O&S
+        -   Analyze the submitted code, install code dependencies
+   -   VM environment
+        -   Openwhisk calls the cluster to run the code
+
+<br/> Release \#4 (due week 10)
+   -   Submission portal
+        -   User can upload code in python
+   -   Results display
+        -   Data visualization results compared to different models
+   -   Admin system
+        -   View system health
+   -   O&S
+        -   Distribute code
+        -   Monitor VM availability
+
+<br/> Release \#5 (due week 12)
+   -   Results display
+        -   Trigger set by users
+        -   Ability to view previous results
+        -   Real time data visualization
+
+<br/> Release \#6 (due week 14) - TBD
+
+<br/> Release \#7 (due week 16) - TBD
