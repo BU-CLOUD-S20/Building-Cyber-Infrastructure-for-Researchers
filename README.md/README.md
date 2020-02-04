@@ -56,6 +56,7 @@
 <br />Security: provide secure storage of user data and computation output
 
 4.  Solution Concept
+<imag src="https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/solution%20concept.PNG">
 <br />The main problem for the system is the lack of a way to monitor it to tell which containers are full or have failed to run the code. So we plan to overhaul the web interface with a system for logging in that allows administrators to have access to the performance of the system. Once users sign in they will be presented with options based on their credentials. All users will be able to input data, code, and offline containers.
 
 5.  Acceptance Criteria
