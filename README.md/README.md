@@ -1,6 +1,6 @@
 # Building-Cyber-Infrastructure-for-Researchers
-1.  Vision and Goals Of The Project 
-  The system will be a cloud based infrastructure that runs code written in Python or R over specified data sets to create and compare models that predict ecological forecasts. High-Level Goals for this Project include:
+1.  Vision and Goals Of The Project
+<br />The system will be a cloud based infrastructure that runs code written in Python or R over specified data sets to create and compare models that predict ecological forecasts. High-Level Goals for this Project include:
 
 -   Providing a web service with a simple user experience such that
     researchers can submit code and periodically run it on data sets.
@@ -12,13 +12,13 @@
     accuracy.
 
 2.  Users/ Personas of the Project 
-  The system will be used by the end-users in the earth science department of BU. It targets only end-users, specifically ecological researchers. It does not target:
+<br />The system will be used by the end-users in the earth science department of BU. It targets only end-users, specifically ecological researchers. It does not target:
 
 -   Non-ecological Researchers
 -   Advanced users with complex requirements beyond the scope of the project.
 
 3.  Scope and Features of the Project
-  UI: an easy-to-use web interface for users
+<br />UI: an easy-to-use web interface for users
 
 -   User registration and login
 -   (Only) Administrator management of existing users
@@ -35,35 +35,38 @@
 -   Comparison of different models over time on the same set of data
 -   Accuracy measurement of the prediction model by comparing it with
     real-time updated data
-    Orchestrator & Scheduler:
+    <br />
+<br />Orchestrator & Scheduler:
 -   Analyze the submitted code and install code dependencies
 -   Distribute code across different cloud platforms for computation 
     to balance load
 -   Monitor the availability of the VMs in the cluster, so that no 
-    code
-    is sent to invalid VMs
+    code is sent to invalid VMs
 -   Resend code to a new machine when one VM fails
-  VM Environment: free
+<br />
+<br />VM Environment: free
     cloud serverless platform GENI & Chameleon
 -   Install Openwhisk on a cluster of VMs (so that there is no need to
     renew VM every week)
 -   Openwhisk calls the cluster to run the code
 -   Code distributed by O&S to run either on GENI edge nodes or
     Chameleon cloud
-  Database Management: Store output of computation in the database (MongoDB) 
-  Security: provide secure storage of user data and computation output
+    <br />
+<br />Database Management: Store output of computation in the database (MongoDB) 
+<br />Security: provide secure storage of user data and computation output
 
 4.  Solution Concept
-The main problem for the system is the lack of a way to monitor it to tell which containers are full or have failed to run the code. So we plan to overhaul the web interface with a system for logging in that allows administrators to have access to the performance of the system. Once users sign in they will be presented with options based on their credentials. All users will be able to input data, code, and offline containers.
+<br />The main problem for the system is the lack of a way to monitor it to tell which containers are full or have failed to run the code. So we plan to overhaul the web interface with a system for logging in that allows administrators to have access to the performance of the system. Once users sign in they will be presented with options based on their credentials. All users will be able to input data, code, and offline containers.
 
-5.  Acceptance Criteria The minimum acceptance criteria is a single-running process which the code submitted by the user is taken by Openwhisk and distributed by O&S to run across different cloud serverless platforms and the output of computation is shown to the user on UI. Stretch goals are:
+5.  Acceptance Criteria
+<br />The minimum acceptance criteria is a single-running process which the code submitted by the user is taken by Openwhisk and distributed by O&S to run across different cloud serverless platforms and the output of computation is shown to the user on UI. Stretch goals are:
 
 -   More visualization functionality for showing the computation output
 -   Code storage optimization (close to data source? User, etc.)
 -   Parallel Code Execution
 
-6.  Release Planning For full release plans, please visit the team’s
-    project space:
+6.  Release Planning
+<br />For full release plans, please visit the team’s project space:
     https://tree.taiga.io/project/mosayyebzadeh-building-cyber-infrastructure-for-researchers/timeline
 
 Release \#1 (due week 4) 
