@@ -1,6 +1,8 @@
 # Building-Cyber-Infrastructure-for-Researchers
 
-### Team Members: Tian Chen, Donovan Jones, Komal Kango, Jing Song, Kristi Perreault 
+### Mentors: Abraham Matta(matta@bu.edu), Ali Raza (araza@bu.edu)
+
+### Team Members: Tian Chen, Donovan Jones, Komal Kango, Jing Song(jingsong@bu.edu), Kristi Perreault 
    <br/>	
 
 ## 1.  Vision and Goals Of The Project
