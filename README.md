@@ -2,7 +2,7 @@
 
 ### Mentors: Abraham Matta(matta@bu.edu), Ali Raza (araza@bu.edu)
 
-### Team Members: Tian Chen, Donovan Jones, Komal Kango, Jing Song(jingsong@bu.edu), Kristi Perreault 
+### Team Members: Tian Chen（ct970808@bu.edu）, Donovan Jones（jonesde@bu.edu）, Komal Kango（komalk@bu.edu）, Jing Song(jingsong@bu.edu), Kristi Perreault（kristip@bu.edu） 
    <br/>	
 
 ## 1.  Vision and Goals Of The Project
@@ -15,7 +15,7 @@
    <br/>
 
 ## 2.  Users/ Personas of the Project 
-<br/> The system will be used by the end-users in the earth science department of BU. It targets only end-users, specifically ecological       researchers. It does not target:
+<br/> The system will be deployed by system administrators and used by the end-users in the earth science department of BU. It targets end-users, specifically ecological       researchers. It does not target:
 
    -   Non-ecological Researchers
    -   Advanced users with complex requirements beyond the scope of the project.
@@ -23,18 +23,30 @@
 
 ## 3.  Scope and Features of the Project
 <br/> UI: an easy-to-use web interface for users
-
-   -   User registration and login
-   -   (Only) Administrator management of existing users
-   -   (Only) Administrator access to information about the current VM cluster
-   -   Management of all previous logs of computations
-   -   Allows submission of new computation code
-   -   Code submitted by users either through a link to the container or with code and libraries which are then put together into a            container by Docker Hub
-   -   Trigger set by users to start executing the code
-   -   Standardized visualization of output from running the code (extra z-axis in the plot being the the confidence of prediction)
-   -   Comparison of different models over time on the same set of data
-   -   Accuracy measurement of the prediction model by comparing it with real-time updated data
-   <br/>
+   -   System Administrator: developers
+        -   Approve project proposals from project leads
+        -   Assign users as project leads
+        -   Management of all existing projects and users in the system
+        -   Access to information about the current VM cluster
+   -   Project Leads: usually professors
+        -   Approve requests from users to join projects (request received through email)
+        -   Add or remove team members
+        -   View the working progress of team members
+   -   Team Members: usually graduate students
+        -   Could be assigned as project leads/administrators
+   -  Front-end features for all users
+        -   User registration and login
+        -   Allows changing password
+        -   Allows search for specific projects and requests to join
+        -   Management of all previous logs of computations
+        -   Allows submission of new computation code
+        -   Code submitted by users either through a link to the container or with code and libraries which are then put together into a container by Docker Hub
+        -   Online editor for code input, instead of text box
+        -   Trigger set by users to start executing the code
+        -   Standardized visualization of output from running the code (extra z-axis in the plot being the the confidence of prediction)
+        -   Comparison of different models over time on the same set of data
+        -   Accuracy measurement of the prediction model by comparing it with real-time updated data 
+    <br/>
     
 <br/> Orchestrator & Scheduler:
    -   Analyze the submitted code and install code dependencies
@@ -49,9 +61,11 @@
    -   Code distributed by O&S to run either on GENI edge nodes or Chameleon cloud
     <br/>
     
-<br/>Database Management: Store output of computation in the database (MongoDB) 
+<br/> Database Management: 
+   -   User information stored and managed in MongoDB
+   -   Store output of computation in DynamoDB (Dynamo allows computation configuration)
 
-<br/>Security: provide secure storage of user data and computation output
+<br/> Security: provide secure storage of user data and computation output
 <br/>
 <br/>
 
