@@ -51,7 +51,7 @@
 <br/> Orchestrator & Scheduler:
    -   Analyze the submitted code and install code dependencies
    -   Distribute code across different cloud platforms for computation to balance load
-   -   Monitor the availability of the VMs in the cluster, so that no code is sent to invalid VMs
+   -   The cloud to run openWhisk can only exist for seven days, after that the recourse will be retrieved, and we need to reapply the access to the recourse, so we need an O&S to Monitor the availability of the VMs in the cluster, so that no code is sent to invalid VMs. 
    -   Resend code to a new machine when one VM fails
    <br/>
 
