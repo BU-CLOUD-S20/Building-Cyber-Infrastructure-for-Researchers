@@ -15,7 +15,7 @@
    <br/>
 
 ## 2.  Users/ Personas of the Project 
-<br/> The system will be deployed by system administrators and used by two segments of end-users in the earth science department of BU. The end-users will be segemented as program leaders and program team members. The system targets end-users, specifically ecological researchers. It does not target:
+<br/> The system will be deployed by system administrators and used by two segments of end-users in the BU Department of Earth and Enviornment. The end-users will be segemented as project leaders and project team members. The system targets end-users, specifically ecological researchers. It does not target:
 
    -   Non-ecological Researchers
    -   Advanced users with complex requirements beyond the scope of the project.
