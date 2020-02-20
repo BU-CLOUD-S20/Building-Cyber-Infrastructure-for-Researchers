@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h1 style="text-align:center">Ecoforecast</h1>
+
+    <br/>
+
+    <h2 style="text-align:center">Dashboard</h2>
+
+    <p>You are currently logged in as {{ name }}</p>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+{% endblock %}

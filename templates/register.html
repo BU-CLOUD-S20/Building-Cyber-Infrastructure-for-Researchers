@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align:center">Ecoforecast</h1>
+
+    <br/>
+
+    <h2 style="text-align:center">User Registration</h2>
+
+    <br/>
+
+    <div style="text-align:center">
+
+        <form method="POST" action="/login">
+
+            <p style="text-align:center">Username   {{ form.username }}</p>
+
+            <br/>
+
+            <p style="text-align:center">Email   {{ form.email }}</p>
+
+            <br/>
+
+            <p style="text-align:center">Password   {{ form.password }}</p>
+
+            {{ form.hidden_tag() }}
+
+            <br/>
+
+            <br/>
+
+            <input type="submit" value="Register">
+
+        </form>
+
+    </div>
+
+{% endblock %}
