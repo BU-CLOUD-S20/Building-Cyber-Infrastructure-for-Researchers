@@ -103,10 +103,10 @@ def register():
     return render_template('register.html', form=form)
 
 
-@app.route('/dashboard', methods=['POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html', name=current_user.email)
+    return render_template('dashboard.html', name="currentuser.email")
 
 
 @app.route('/logout', methods=['GET'])
