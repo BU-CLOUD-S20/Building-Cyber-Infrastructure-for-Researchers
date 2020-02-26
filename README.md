@@ -10,12 +10,13 @@
 <br/> The system will be a cloud based infrastructure that runs code written in Python or R over specified data sets to create and             compare models that predict ecological forecasts. High-Level Goals for this Project include:
 
    -   Providing a web service with a simple user experience such that researchers can submit code and periodically run it on data sets.
-   -   Developing infrastructure on the cloud using either VM or containers to run code and balance workload.
+   -   Developing reliable infrastructure on unreliable nodes using a Kubernetes Cluster
+   -   Focusing on Function as a Service with OpenWhisk as a proof of concept
    -   Providing a user interface that allows for comparisons between multiple models on the same data set along with comparisons of            models using periodic data sets in order to determine model accuracy.
    <br/>
 
 ## 2.  Users/ Personas of the Project 
-<br/> The system will be deployed by system administrators and used by two segments of end-users in the BU Department of Earth and Enviornment. The end-users will be segemented as project leaders and project team members. The system targets end-users, specifically ecological researchers. It does not target:
+<br/> The system will be deployed by system administrators and used by the end-users in the earth science department of BU. It targets end-users, specifically ecological       researchers. It does not target:
 
    -   Non-ecological Researchers
    -   Advanced users with complex requirements beyond the scope of the project.
@@ -48,19 +49,25 @@
         -   Accuracy measurement of the prediction model by comparing it with real-time updated data 
     <br/>
     
-<br/> Orchestrator & Scheduler:
-   -   Analyze the submitted code and install code dependencies
-   -   Distribute code across different cloud platforms for computation to balance load
-   -   The cloud to run openWhisk can only exist for seven days, after that the recourse will be retrieved, and we need to reapply the access to the recourse, so we need an O&S to Monitor the availability of the VMs in the cluster, so that no code is sent to invalid VMs. 
-   -   Resend code to a new machine when one VM fails
+<br/> Unreliable Nodes:
+   -   Utilize Chameleon and GENI as the unreliable nodes to build infrastructure on top of
+   -   Capability for infrastructure to "loan out" these nodes to services or applications as needed
+   -   Monitor the availability of these nodes, including up/down time and proximity to data stores
+   <br/>
+    
+<br/> Orchestration with Kubernetes:
+   -   Allows for a consistent layer over which anything can be deployed. For this project, the focus is Function as a Service (FaaS) with OpenWhisk
+   -   Determine where the code from the researchers will run depending on where it is stored
+   -   Explore possibility of deploying Kubernetes Cluster on the Mass Open Cloud
+   -   Provide a view of available nodes, including locations to data stores (stretch goal)
    <br/>
 
-<br/> VM Environment: free cloud serverless platform GENI & Chameleon
-   -   Install Openwhisk on a cluster of VMs (so that there is no need to renew VM every week)
-   -   Openwhisk calls the cluster to run the code
-   -   Code distributed by O&S to run either on GENI edge nodes or Chameleon cloud
-    <br/>
-    
+
+<br/> Compute with OpenWhisk: 
+   -   Run OpenWhisk on Kubernetes cluster as first service offering for the Cyber Infrastructure platform
+   -   Commands sent to OpenWhisk, which is running on a cluster determined by Kubernetes based on node availablity and location
+
+
 <br/> Database Management: 
    -   User information stored and managed in MongoDB
    -   Store output of computation in DynamoDB (Dynamo allows computation configuration)
@@ -70,18 +77,18 @@
 <br/>
 
 ## 4.  Solution Concept
-<img src="Solution_Diagram.png"><br/>
+<img src="https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/solution%20concept.PNG"><br/>
 
-<br/> The main problem for the system is the lack of a way to monitor it to tell which containers are full or have failed to run the           code. So we plan to overhaul the web interface with a system for logging in that allows administrators to have access to the             performance of the system. Once users sign in they will be presented with options based on their credentials. All users will be         able to input data, code, and offline containers.
+<br/> The main issue the team is attempting to solve is the unreliability of Chameleon and GENI nodes for running researcher's code. Chameleon and GENI are used due to their low cost, but the trade off is there is low availablity. By building an infrastructure layer over these nodes, and utilizing a Kubernetes cluster to orchestrate the use of nodes, researchers will be able to rely on this system to compute and store their data without having to overpay. As a proof of concept, the team will build this infrastructure layer with ecological researchers at BU in mind, and will first attempt to install OpenWhisk on the Kubernetes cluster to test the function as a service avenue. In addition, a basic UI will be provided to allow researchers to input code and compare data models, and system admins to manage access requests.
 <br/>
 <br/>
     
 ## 5.  Acceptance Criteria
-<br/> The minimum acceptance criteria is a single-running process which the code submitted by the user is taken by Openwhisk and               distributed by O&S to run across different cloud serverless platforms and the output of computation is shown to the user on UI.         Stretch goals are:
+<br/> The minimum acceptance criteria is an infrastructure service running OpenWhisk in a Kubernetes cluster, deployed to the MOC. The Kubernetes cluster orchestrates where the code runs based on node availablity and proximity to where the data is stored. In addition, a basic UI is provided for users to submit code, and system admin to monitor access requests. Stretch goals are:
 
-   -   More visualization functionality for showing the computation output
-   -   Code storage optimization (close to data source? User, etc.)
-   -   Parallel Code Execution
+   -   Preview of the node locations and availablity surfaced through the UI
+   -   Optimization of node location and data store proximity
+   -   More robust user experience
    <br/>
 
 ## 6.  Release Planning
@@ -98,28 +105,20 @@
         -   Admin system
 
 <br/> Release \#2 (due week 6) 
-   -   Submission portal 
-        -   User can upload code in R in text box or file upload 
-        -   Data stored in MongoDB 
-   -   Userregistration/login 
+   -   UI Component
         -   User able to register for an account with email
-        -   User able to login 
-   -   Admin system 
-        -   Ability for admins to approve registration requests 
-   -   VM environment 
+        -   User able to login
+        -   User data stored in MongoDB database
+   -   Backend/Cloud Component 
         -   Install Openwhisk on a cluster
+        -   Stand up a function to run on the cluster
 
 <br/> Release \#3 (due week 8) 
-   -   Submission portal
-        -   User can upload code in R via container link/code link 
-   -   Results display 
-        -   Data visualization results surfaced to user
-   -   Admin system
-        -   Manage accounts; add, delete, update users
-   -   Build O&S
-        -   Analyze the submitted code, install code dependencies
-   -   VM environment
-        -   Openwhisk calls the cluster to run the code
+   -   UI Component
+        -   User can upload code in R via container link/code link
+        -   Admin portal created with ability to manage users
+   -   Backend/Cloud Component
+        -   Ability to add and remove the unreliable Chameleon nodes
 
 <br/> Release \#4 (due week 10)
    -   Submission portal
