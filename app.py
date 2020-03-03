@@ -14,7 +14,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 from flask_user import UserManager
 
-
+fgsdgfd
 class ConfigClass(object):
     """ Flask application config """
 
