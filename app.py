@@ -14,8 +14,6 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 from flask_user import UserManager
 
-dfkhasva
-
 class ConfigClass(object):
     """ Flask application config """
 
@@ -116,6 +114,23 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+
+# Setup openwhisk
+def set_whisk_props():
+    openwhisk_ip = os.getenv("OPENWHISK_IP")
+    openwhisk_auth = os.getenv("OPENWHISK_AUTH")
+    os.system(f"wsk -i property set --apihost {openwhisk_ip}")
+    os.system(f"wsk -i property set --auth {openwhisk_auth}")
+
+
+# Dummy hello world to run on openwhisk
+def run_hello_world():
+    cmd = 'wsk -i action create helloWorld hello.py'
+    p = subprocess.Popen(cmd, stdout=f, stderr=f, shell=True)
+    p.wait()
+    cmd = 'wsk -i action invoke helloWorld'
+    p = subprocess.Popen(cmd, stdout=f, stderr=f, shell=True)
+    p.wait()
 
 if __name__ == '__main__':
     app.run()
