@@ -91,7 +91,7 @@
    -   More robust user experience
    <br/>
 
-## 6.  Release Planning
+## 6a.  Release Planning - Proposed
 <br/> For full release plans, please visit the team’s project space:
       https://tree.taiga.io/project/mosayyebzadeh-building-cyber-infrastructure-for-researchers/timeline
 
@@ -140,3 +140,37 @@
 <br/> Release \#6 (due week 14) - TBD
 
 <br/> Release \#7 (due week 16) - TBD
+
+## 6b.  Release Planning - Actual
+
+<br/> Release \#1 (due week 2) 
+   -   Project goals determined and understood 
+   -   Front end framework determined 
+   -   New project created & outlined 
+        -   User submission 
+        -   User registration/login 
+        -   Results display 
+        -   Admin system
+
+<br/> Release \#2 (due week 4) 
+   -   UI Component
+        -   User login & registration
+        -   Dashboard
+   -   Backend/Cloud Component 
+        -   Access to MOC and OpenWhisk
+        -   OpenWhisk running on one VM in MOC
+        -   Code standards & team working agreement
+
+<br/> Release \#3 (due week 6)
+   -   UI Component
+        -   Code submission page in UI
+   -   Backend/Cloud Component 
+        -   OpenWhisk API mock call from UI
+        -   OpenWhisk on Kubernetes work started
+
+<br/> Release \#4 (due week 8) - TBD
+
+<br/> Release \#5 (due week 10) - TBD
+
+<br/> Release \#6 (due week 12) - TBD
+
