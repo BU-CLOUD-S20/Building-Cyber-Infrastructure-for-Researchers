@@ -103,7 +103,7 @@ def register():
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def dashboard():
     return render_template('dashboard.html', name="currentuser.email")
 
