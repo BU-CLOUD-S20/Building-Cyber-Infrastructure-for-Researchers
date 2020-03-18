@@ -14,13 +14,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 from flask_user import UserManager
 
-dfkhasva
-
+"""
 class ConfigClass(object):
-    """ Flask application config """
 
     # Flask settings
-    SECRET_KEY = '...'
+    SECRET_KEY = '....'
 
     # Flask-MongoEngine settings
     MONGODB_SETTINGS = {
@@ -33,21 +31,30 @@ class ConfigClass(object):
     USER_ENABLE_EMAIL = False  # Disable email authentication
     USER_ENABLE_USERNAME = True  # Enable username authentication
     USER_REQUIRE_RETYPE_PASSWORD = False  # Simplify register form
-
+"""
 
 app = Flask(__name__)
 
-app.config.from_object(__name__ + '.ConfigClass')
+# app.config.from_object(__name__ + '.ConfigClass')
 
 db = MongoEngine(app)
-app.config['SECRET_KEY'] = '<---YOUR_SECRET_FORM_KEY--->'
+
+app.config['SECRET_KEY'] = '...'
+
+MONGODB_SETTINGS = {
+    'db': 'user_db',
+    'host': 'mongodb://localhost:27017/users_management'
+}
+
 login_manager = LoginManager()
+
 login_manager.init_app(app)
+
 login_manager.login_view = 'login'
 
 
 class User(UserMixin, db.Document):
-    meta = {'collection': '<---YOUR_COLLECTION_NAME--->'}
+    meta = {'collection': 'users'}
     email = db.StringField(max_length=30)
     password = db.StringField(max_length=30)
 
@@ -68,8 +75,10 @@ class RegForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=20)])
 
 
+"""
 # Setup Flask-User and specify the User data-model
 user_manager = UserManager(app, db, User)
+"""
 
 
 @app.route("/")
@@ -105,9 +114,9 @@ def register():
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def dashboard():
-    return render_template('dashboard.html', name="currentuser.email")
+    return render_template('dashboard.html', name="jingsong")
 
 
 @app.route('/logout', methods=['GET'])

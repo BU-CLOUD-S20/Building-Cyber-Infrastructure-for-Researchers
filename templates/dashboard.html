@@ -29,6 +29,13 @@
         theme: 'snow'
     });
     </script>
+    <br>
+    <br>
+    <div id="editor">some text</div>
+        <script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+        var editor = ace.edit("editor");
+        </script>
     <button type="button" onclick="window.location.href='{{ url_for( 'dashboard' ) }}';">Submit</button>
 
 
