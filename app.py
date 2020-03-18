@@ -4,7 +4,7 @@ from flask_mongoengine import MongoEngine, Document
 
 from flask_wtf import FlaskForm
 
-from wtforms import StringField, PasswordField
+from wtforms import Form, StringField, PasswordField
 
 from wtforms.validators import Email, Length, InputRequired
 
@@ -13,6 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 from flask_user import UserManager
+
 
 """
 class ConfigClass(object):
@@ -32,7 +33,6 @@ class ConfigClass(object):
     USER_ENABLE_USERNAME = True  # Enable username authentication
     USER_REQUIRE_RETYPE_PASSWORD = False  # Simplify register form
 """
-
 app = Flask(__name__)
 
 # app.config.from_object(__name__ + '.ConfigClass')
@@ -75,6 +75,9 @@ class RegForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=20)])
 
 
+class SearchForm(Form):
+    search = StringField('')
+
 """
 # Setup Flask-User and specify the User data-model
 user_manager = UserManager(app, db, User)
@@ -116,7 +119,15 @@ def register():
 @app.route('/dashboard', methods=['GET', 'POST'])
 # @login_required
 def dashboard():
-    return render_template('dashboard.html', name="jingsong")
+    return render_template('submit_new_code.html', name=current_user.username)
+
+
+@app.route('/dashboard/new_project', methods=['GET', 'POST'])
+def new_project():
+    search = SearchForm(request.form)
+    #if request.method == 'POST':
+    #    return search_results(search)
+    return render_template('new_project.html', name=current_user.username, form=search)
 
 
 @app.route('/logout', methods=['GET'])
