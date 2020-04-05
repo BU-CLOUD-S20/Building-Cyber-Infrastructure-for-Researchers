@@ -245,8 +245,8 @@ def my_projects():
 @app.route("/dashboard/new_project/email_request")
 def email_request():
     msg = Message("Hello! Could I join your project?",
-                  sender="jingsong@bu.edu",
-                  recipients=["jingsong@bu.edu"])
+                  sender="...",
+                  recipients=["..."])
     mail.send(msg)
     return render_template('email_request.html')
 
