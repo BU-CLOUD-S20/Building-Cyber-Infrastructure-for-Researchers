@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "admin_dashboard.html" %}
 
 {% block content %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,7 +21,7 @@
                                 <a class="nav-link" href="{{ url_for( 'new_project' ) }}">New Projects</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
+                                <a class="nav-link" href="#">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Compare Models</a>
@@ -33,8 +33,6 @@
                     </div>
                 </div>
             </nav>
-            <button type="button" onclick="window.location.href='{{ url_for( 'hello_world' ) }}';">Dummy Test for helloworld.py</button>
-
             <!-- Include stylesheet -->
             <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
@@ -55,9 +53,7 @@
             </script>
             <button type="button" onclick="window.location.href='{{ url_for( 'dashboard' ) }}';">Submit</button>
             <br>
-
-            <a href="{{ url_for('hello_world') }}">Dummy Test for helloworld.py</a>
-
+            <button type="button" onclick="window.location.href='{{ url_for( 'hello_world' ) }}';">Dummy Test for helloworld.py</button>
             <br>
             <br>
 
