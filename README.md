@@ -79,7 +79,7 @@
 * Note: Due to unforeseen circumstances in Spring of 2020, any starred items are now considered stretch goals of the project
 
 ## 4.  Solution Concept
-<img src="https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/solution%20concept.PNG"><br/>
+<img src="https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Solution_Diagram.png"><br/>
 
 <br/> The main issue the team is attempting to solve is the unreliability of Chameleon and GENI nodes for running researcher's code. Chameleon and GENI are used due to their low cost, but the trade off is there is low availability. By building an infrastructure layer over these nodes, and utilizing a Kubernetes cluster to orchestrate the use of nodes, researchers will be able to rely on this system to compute and store their data without having to overpay. As a proof of concept, the team will build this infrastructure layer with ecological researchers at BU in mind, and will first attempt to install OpenWhisk on the Kubernetes cluster to test the function as a service avenue. In addition, a basic UI will be provided to allow researchers to input code and compare data models, and system admins to manage access requests.
 <br/>
@@ -194,4 +194,32 @@
         -   OpenWhisk installed on Kubernetes cluster
 
 <br/> Release \#6 (due week 12) - TBD
+<br/>
+<br/>
 
+## 7.  Sprint Presentations
+<br/>Sprint 1
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%201%20Presentation.pdf)
+   
+<br/>Sprint 2
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%202%20Presentation.pdf)
+   - [UI Demo Video](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%202%20UI%20demo.mp4)
+      
+<br/>Sprint 3
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%203%20Presentation.pdf)
+   - [UI Demo Video](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%203%20UI%20demo.zip)
+      
+<br/>Dynamo Paper Presentation
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Dynamo%20Paper%20Presentation.pdf)
+      
+<br/>Sprint 4
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%204%20Presentation.pdf)
+   - [UI Demo Video](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%204%20UI%20Demo.zip)
