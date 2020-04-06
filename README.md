@@ -172,15 +172,26 @@
 
 <br/> Release \#4 (due week 8)
    -   UI Component
-        -   Users can request to join projects
+        -   Users can request to join projects (started)
         -   Email request sent to project admin to confirm or deny access request
         -   Response from OpenWhisk displayed to user
+        -   User Hierarchy (started)
    -   Backend/Cloud Component 
-        -   OpenWhisk API call is made from the UI
-        -   OpenWhisk executes code and returns response to user
-        -   Work towards Kubernetes cluster, rather than just one node
+        -   Simple "HelloWorld" OpenWhisk API call is made from the UI
+        -   OpenWhisk executes code and returns simple response to user
+        -   Kubernetes cluster created
 
-<br/> Release \#5 (due week 10) - TBD
+<br/> Release \#5 (due week 10)
+   -   UI Component
+        -   Users can request to join projects (finished)
+        -   Email request sent to project admin to confirm or deny access request
+        -   User Hierarchy Part (finished)
+        -   Data visualization in UI
+        -   User can select variables to plot from result data
+    -   Backend/Cloud Component 
+        -   Complex (Matrix Multiply) OpenWhisk API call is made from the UI
+        -   OpenWhisk executes code and returns results to user
+        -   OpenWhisk installed on Kubernetes cluster
 
 <br/> Release \#6 (due week 12) - TBD
 
