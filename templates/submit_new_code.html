@@ -34,17 +34,17 @@
                 </div>
             </nav>
             <button type="button" onclick="window.location.href='{{ url_for( 'hello_world' ) }}';">Dummy Test for helloworld.py</button>
-
+            <form method="POST" action="http://localhost:5000/submit_code">
             <link rel="stylesheet" href="../static/codemirror-5.52.2/lib/codemirror.css">
             <script src="../static/codemirror-5.52.2/lib/codemirror.js"></script>
-
-            <textarea id="code"></textarea>
+            <textarea name="code"></textarea>
             <script type="text/javascript">
                 var editor=CodeMirror.fromTextArea(document.getElementById("code"),{
                     lineNumbers: true
                 });
             </script>
-            <button type="button" onclick="window.location.href='{{ url_for( 'dashboard' ) }}';">Submit</button>
+            <input type="submit" value="Submit">
+            </form>
             <br>
 
             <a href="{{ url_for('hello_world') }}">Dummy Test for helloworld.py</a>

@@ -26,14 +26,13 @@ import datetime
 
 # PyMongo Mongodb settings
 app = Flask(__name__)
-app.config["MONGO_URI"] = "..."
+app.config["MONGO_URI"] = "mongodb://localhost:27017/user_db"
 mongo = PyMongo(app)
 db = mongo.db
 collection = db['tempusers']
 collection2 = db['temproles']
 collection3 = db['projects']
 collection4 = db['wsk_results']
-
 
 app.config['SECRET_KEY'] = '...'
 
@@ -73,7 +72,7 @@ def login():
                      'email': email,
                      'hash_pass': hashing,
                      'role': 'student'
-                    }
+                     }
         collection.insert_one(new_entry)
         return render_template('login.html', form=form)
 
@@ -135,6 +134,18 @@ def hello_world():
     return render_template('hello_world_test.html', result=result['response']['result']['greeting'], name=session[0])
 
 
+@app.route("/submit_code", methods=['POST'])
+def submit_code():
+    global session
+    result = request.form['code']
+    new_entry = {'author': session[0],
+                 'date': datetime.datetime.utcnow(),
+                 'result': str(result)
+                 }
+    collection4.insert_one(new_entry)
+    return render_template('hello_world_test.html', result=result['response']['result']['greeting'], name=session[0])
+
+
 @app.route("/dashboard/previous_computations", methods=['GET', 'POST'])
 def previous_computations():
     global session
@@ -153,7 +164,7 @@ def previous_computations():
 def new_project():
     global session
     search = SearchForm(request.form)
-    #if request.method == 'POST':
+    # if request.method == 'POST':
     #    return search_results(search)
     return render_template('new_project.html', name=session[0], form=search)
 
@@ -164,11 +175,14 @@ def profile():
     if session[2] == 'student':
         return render_template('profile.html', name=session[0], username=session[0], email=session[1], role="Student")
     elif session[2] == 'lead':
-        return render_template('lead_profile.html', name=session[0], username=session[0], email=session[1], role="Project Lead")
+        return render_template('lead_profile.html', name=session[0], username=session[0], email=session[1],
+                               role="Project Lead")
     elif session[2] == 'admin':
-        return render_template('admin_profile.html', name=session[0], username=session[0], email=session[1], role="System Administrator")
+        return render_template('admin_profile.html', name=session[0], username=session[0], email=session[1],
+                               role="System Administrator")
     else:
-        return render_template('profile.html', name=session[0], username=session[0], form=search, email=session[1], role="Student")
+        return render_template('profile.html', name=session[0], username=session[0], form=search, email=session[1],
+                               role="Student")
 
 
 @app.route('/dashboard/all_projects', methods=['GET', 'POST'])
@@ -233,13 +247,17 @@ def my_projects():
                 member_project_entries.append(project_entry)
                 project_entry = ["", "", "", [""]]
     if session[2] == 'student':
-        return render_template('show_my_projects.html', name=session[0], lead_projects=lead_project_entries, member_projects=member_project_entries)
+        return render_template('show_my_projects.html', name=session[0], lead_projects=lead_project_entries,
+                               member_projects=member_project_entries)
     elif session[2] == 'lead':
-        return render_template('lead_show_my_projects.html', name=session[0], lead_projects=lead_project_entries, member_projects=member_project_entries)
+        return render_template('lead_show_my_projects.html', name=session[0], lead_projects=lead_project_entries,
+                               member_projects=member_project_entries)
     elif session[2] == 'admin':
-        return render_template('admin_show_my_projects.html', name=session[0], lead_projects=lead_project_entries, member_projects=member_project_entries)
+        return render_template('admin_show_my_projects.html', name=session[0], lead_projects=lead_project_entries,
+                               member_projects=member_project_entries)
     else:
-        return render_template('show_my_projects.html', name=session[0], lead_projects=lead_project_entries, member_projects=member_project_entries)
+        return render_template('show_my_projects.html', name=session[0], lead_projects=lead_project_entries,
+                               member_projects=member_project_entries)
 
 
 @app.route("/dashboard/new_project/email_request")
