@@ -260,6 +260,17 @@ def my_projects():
                                member_projects=member_project_entries)
 
 
+@app.route('/dashboard/results', methods=['GET', 'POST'])
+def show_results():
+    global session
+    result = plot.plot()
+    new_entry = {'author': session[0],
+                 'date': datetime.datetime.utcnow(),
+                 'result': str(result)
+                 }
+    collection4.insert_one(new_entry)
+    return render_template('results.html', result=result['response']['result']['greeting'], name=session[0])
+
 @app.route("/dashboard/new_project/email_request")
 def email_request():
     msg = Message("Hello! Could I join your project?",
