@@ -26,7 +26,7 @@ import datetime
 
 # PyMongo Mongodb settings
 app = Flask(__name__)
-app.config["MONGO_URI"] = "..."
+app.config["MONGO_URI"] = "mongodb://admin:ec528bcifr@localhost:27017/admin"
 mongo = PyMongo(app)
 db = mongo.db
 collection = db['tempusers']

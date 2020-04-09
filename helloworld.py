@@ -8,7 +8,7 @@ def helloworld():
     payload = "{\"name\":\"World\"}"
 
     headers = {
-        'Authorization': '...',
+        'Authorization': 'Basic MjNiYzQ2YjEtNzFmNi00ZWQ1LThjNTQtODE2YWE0ZjhjNTAyOjEyM3pPM3haQ0xyTU42djJCS0sxZFhZRnBYbFBrY2NPRnFtMTJDZEFzTWdSVTRWck5aOWx5R1ZDR3VNREdJd1A=',
         'Content-Type': 'application/json'
     }
 
