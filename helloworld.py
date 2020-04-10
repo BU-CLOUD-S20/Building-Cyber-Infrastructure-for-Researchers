@@ -1,6 +1,6 @@
 import requests
 from urllib3.exceptions import InsecureRequestWarning
-
+import json
 
 def helloworld():
     url = "http://128.31.25.50/api/v1/namespaces/_/actions/helloPy?blocking=true&result=false"
@@ -17,15 +17,15 @@ def helloworld():
 
 def create(name,payload):
     url = "https://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?overwrite=false"
-    payload = "{\"namespace\":\"_\",\"name\":\"helloPy\",\"exec\":{\"kind\":\"python:default\",\"code\":\"def main(dict):\\n    if 'name' in dict:\\n        name = dict['name']\\n    else:\\n        name = \\\"stranger\\\"\\n    greeting = \\\"Hello \\\" + name + \\\"!\\\"\\n    print(greeting)\\n    return {\\\"greeting\\\": greeting}\\n\\n\"}}\r\n"
+    payload=format(name,payload)
     headers = {
         'Authorization': 'Basic MjNiYzQ2YjEtNzFmNi00ZWQ1LThjNTQtODE2YWE0ZjhjNTAyOjEyM3pPM3haQ0xyTU42djJCS0sxZFhZRnBYbFBrY2NPRnFtMTJDZEFzTWdSVTRWck5aOWx5R1ZDR3VNREdJd1A=',
         'Content-Type': 'application/json',
     }
 
-    response = requests.request("PUT", url, headers=headers, data=payload)
+    response = requests.request("PUT", url, headers=headers, data=payload, verify=False)
     print(response.text.encode('utf8'))
-    return response.json()
+    return True
 
 def invoke(name,payload):
     url = "http://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?blocking=true&result=false"
@@ -41,16 +41,24 @@ def invoke(name,payload):
 
 def update(name,payload):
     url = "https://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?overwrite=true"
-
-    payload = "{\"namespace\":\"_\",\"name\":\"helloPy\",\"exec\":{\"kind\":\"python:default\",\"code\":\"def main(dict):\\n    if 'name' in dict:\\n        name = dict['name']\\n    else:\\n        name = \\\"stranger\\\"\\n    greeting = \\\"Hello \\\" + name + \\\"!\\\"\\n    print(greeting)\\n    return {\\\"greeting\\\": greeting}\\n\\n\"}}\r\n"
+    payload = format(name, payload)
     headers = {
         'Authorization': 'Basic MjNiYzQ2YjEtNzFmNi00ZWQ1LThjNTQtODE2YWE0ZjhjNTAyOjEyM3pPM3haQ0xyTU42djJCS0sxZFhZRnBYbFBrY2NPRnFtMTJDZEFzTWdSVTRWck5aOWx5R1ZDR3VNREdJd1A=',
         'Content-Type': 'application/json',
     }
 
-    response = requests.request("PUT", url, headers=headers, data=payload)
+    response = requests.request("PUT", url, headers=headers, data=payload, verify=False)
     print(response.text.encode('utf8'))
-    return response.json()
-
+    return True
+def format(name,code):
+    new_entry = {
+                "namespace": "_",
+                "name": name,
+                "exec": {
+                    "kind": "python:default",
+                    "code": code
+                    }
+                }
+    return json.dumps(new_entry)
 if __name__ == "__main__":
     helloworld()

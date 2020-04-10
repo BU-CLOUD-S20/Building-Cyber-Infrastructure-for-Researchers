@@ -28,7 +28,7 @@ import json
 
 # PyMongo Mongodb settings
 app = Flask(__name__)
-app.config["MONGO_URI"] = "..."
+app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/user_db"
 mongo = PyMongo(app)
 db = mongo.db
 collection = db['tempusers']
@@ -145,16 +145,21 @@ def hello_world():
 @app.route("/submit_code", methods=['POST'])
 def submit_code():
     global session
-    result = helloworld.helloworld()
-
+    result=''
     # Handle Code Form
     if request.method == "POST":
-        code = request.form
+        code = request.form['code']
+        if helloworld.create('test',code) == True:
+            result=helloworld.invoke('test', "{\"name\":\"World\"}")
+        elif helloworld.update('test',code) == True:
+            result=helloworld.invoke('test',"{\"name\":\"World\"}")
+        else:
+            result='null'
         new_entry = {'author': session[0],
                      'date': str(datetime.datetime.utcnow()),
                      'code': code,
                      'result': result
-                    }
+                     }
         collection4.insert_one(new_entry)
     return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
 
