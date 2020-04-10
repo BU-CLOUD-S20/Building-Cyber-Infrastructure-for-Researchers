@@ -33,21 +33,37 @@
                     </div>
                 </div>
             </nav>
-            <button type="button" onclick="window.location.href='{{ url_for( 'hello_world' ) }}';">Dummy Test for helloworld.py</button>
+
+            <p> Enter Your Code Here: </p>
+
             <form method="POST" action="http://localhost:5000/submit_code">
             <link rel="stylesheet" href="../static/codemirror-5.52.2/lib/codemirror.css">
+            <link rel="stylesheet" href="../static/codemirror-5.52.2/theme/oceanic-next.css">
             <script src="../static/codemirror-5.52.2/lib/codemirror.js"></script>
-            <textarea name="code"></textarea>
+            <script src="../static/codemirror-5.52.2/mode/python/python.js"></script>
+            <textarea id="code" name = "code" style="display: none;"></textarea>
             <script type="text/javascript">
-                var editor=CodeMirror.fromTextArea(document.getElementById("code"),{
-                    lineNumbers: true
+                var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                    mode: {name: "python",
+                           version: 3,
+                           singleLineStringErrors: false},
+                    smartIndent: true,
+                    indentWithTabs: true,
+                    lineNumbers: true,
+                    styleActiveLine: true,
+                    matchBrackets: true
                 });
+                var theme = "oceanic-next";
+                editor.setOption("theme", theme);
             </script>
+            <br>
             <input type="submit" value="Submit">
             </form>
-            <br>
 
-            <a href="{{ url_for('hello_world') }}">Dummy Test for helloworld.py</a>
+            <br>
+            <br>
+            <br>
+            <button type="button" onclick="window.location.href='{{ url_for( 'hello_world' ) }}';">Dummy Test for helloworld.py</button>
 
             <br>
             <br>

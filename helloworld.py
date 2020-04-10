@@ -26,6 +26,7 @@ def create(name,payload):
     response = requests.request("PUT", url, headers=headers, data=payload)
     print(response.text.encode('utf8'))
     return response.json()
+
 def invoke(name,payload):
     url = "http://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?blocking=true&result=false"
     payload = "{\"name\":\"World\"}"
@@ -37,6 +38,7 @@ def invoke(name,payload):
     response = requests.request("POST", url, headers=headers, data=payload, verify=False)
     print(response.text.encode('utf8'))
     return response.json()
+
 def update(name,payload):
     url = "https://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?overwrite=true"
 
@@ -49,5 +51,6 @@ def update(name,payload):
     response = requests.request("PUT", url, headers=headers, data=payload)
     print(response.text.encode('utf8'))
     return response.json()
+
 if __name__ == "__main__":
     helloworld()

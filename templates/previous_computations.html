@@ -38,13 +38,15 @@
             <tr>
                 <th>Author</th>
                 <th>Computation Time</th>
+                <th>Code</th>
                 <th>Result</th>
             </tr>
             {% for computation in computations %}
             <tr>
                 <td> {{computation[0]}} </td>
                 <td> {{computation[1]}} </td>
-                <td> <u>Result</u> </td>
+                <td> <u> <a href= {{url_for("show_previous_code", timestamp=computation[1])}}> Code </a> </u> </td>
+                <td> <u> <a href= {{url_for("show_previous_result", timestamp=computation[1])}}> Result </a> </u> </td>
             </tr>
             {% endfor %}
             </table>

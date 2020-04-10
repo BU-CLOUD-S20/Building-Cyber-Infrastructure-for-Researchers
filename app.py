@@ -24,9 +24,11 @@ import helloworld as helloworld
 
 import datetime
 
+import json
+
 # PyMongo Mongodb settings
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/user_db"
+app.config["MONGO_URI"] = "..."
 mongo = PyMongo(app)
 db = mongo.db
 collection = db['tempusers']
@@ -51,6 +53,10 @@ class RegForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Email(message='Invalid username'), Length(max=30)])
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=30)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=20)])
+
+
+class CodeForm(FlaskForm):
+    code = StringField('')
 
 
 class SearchForm(Form):
@@ -89,6 +95,7 @@ def register():
 def dashboard():
     global session
     bigger_match = collection.find_one({'username': session[0]})
+    form = CodeForm()
 
     # Handle Login Form
     if request.method == "POST":
@@ -103,23 +110,24 @@ def dashboard():
                 session[0] = match['username']
                 session[1] = match['email']
                 session[2] = match['role']
+                form = CodeForm()
                 if session[2] == 'student':
-                    return render_template('submit_new_code.html', name=session[0])
+                    return render_template('submit_new_code.html', name=session[0], form=form)
                 elif session[2] == 'lead':
-                    return render_template('lead_submit_new_code.html', name=session[0])
+                    return render_template('lead_submit_new_code.html', name=session[0], form=form)
                 elif session[2] == 'admin':
-                    return render_template('admin_submit_new_code.html', name=session[0])
+                    return render_template('admin_submit_new_code.html', name=session[0], form=form)
             else:
                 return redirect(url_for('login'))
 
     if bigger_match['role'] == 'student':
-        return render_template('submit_new_code.html', name=session[0])
+        return render_template('submit_new_code.html', name=session[0], form=form)
     elif bigger_match['role'] == 'lead':
-        return render_template('lead_submit_new_code.html', name=session[0])
+        return render_template('lead_submit_new_code.html', name=session[0], form=form)
     elif bigger_match['role'] == 'admin':
-        return render_template('admin_submit_new_code.html', name=session[0])
+        return render_template('admin_submit_new_code.html', name=session[0], form=form)
     else:
-        return render_template('submit_new_code.html', name=session[0])
+        return render_template('submit_new_code.html', name=session[0], form=form)
 
 
 @app.route("/hello_world", methods=['GET', 'POST'])
@@ -131,33 +139,58 @@ def hello_world():
                  'result': str(result)
                  }
     collection4.insert_one(new_entry)
-    return render_template('hello_world_test.html', result=result['response']['result']['greeting'], name=session[0])
+    return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
 
 
 @app.route("/submit_code", methods=['POST'])
 def submit_code():
     global session
-    result = request.form['code']
-    new_entry = {'author': session[0],
-                 'date': datetime.datetime.utcnow(),
-                 'result': str(result)
-                 }
-    collection4.insert_one(new_entry)
-    return render_template('hello_world_test.html', result=result['response']['result']['greeting'], name=session[0])
+    result = helloworld.helloworld()
+
+    # Handle Code Form
+    if request.method == "POST":
+        code = request.form
+        new_entry = {'author': session[0],
+                     'date': str(datetime.datetime.utcnow()),
+                     'code': code,
+                     'result': result
+                    }
+        collection4.insert_one(new_entry)
+    return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
 
 
 @app.route("/dashboard/previous_computations", methods=['GET', 'POST'])
 def previous_computations():
     global session
     computation_entries = []
-    computation_entry = ["", "", ""]
+    computation_entry = ["", "", "", ""]
     for computation in collection4.find():
         if computation['author'] == session[0]:
             computation_entry[0] = computation['author']
             computation_entry[1] = computation['date']
+            computation_entry[2] = computation['code']
+            computation_entry[3] = computation['result']
             computation_entries.append(computation_entry)
-            computation_entry = ["", "", ""]
+            computation_entry = ["", "", "", ""]
     return render_template('previous_computations.html', computations=computation_entries, name=session[0])
+
+
+@app.route("/previous_code/<timestamp>", methods=['GET', 'POST'])
+def show_previous_code(timestamp):
+    global session
+    timestamp.replace("%", " ")
+    match = collection4.find_one({'date': str(timestamp)})
+    result = json.dumps(match['code'], indent=2)
+    return render_template('show_result.html', result=result, name=session[0])
+
+
+@app.route("/previous_result/<timestamp>", methods=['GET', 'POST'])
+def show_previous_result(timestamp):
+    global session
+    timestamp.replace("%", " ")
+    match = collection4.find_one({'date': str(timestamp)})
+    result = json.dumps(match['result'], indent=2)
+    return render_template('show_result.html', result=result, name=session[0])
 
 
 @app.route('/dashboard/new_project', methods=['GET', 'POST'])
