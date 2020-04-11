@@ -159,16 +159,22 @@ def hello_world():
 @app.route("/submit_code", methods=['POST'])
 def submit_code():
     global session
-    result = helloworld.helloworld()
+    result = ''
 
     # Handle Code Form
     if request.method == "POST":
-        code = request.form
+        code = request.form['code']
         new_entry = {'author': session[0],
                      'date': str(datetime.datetime.utcnow()),
                      'code': code,
                      'result': result
                     }
+        if helloworld.create('test', code):
+            result = helloworld.invoke('test', "{\"name\":\"World\"}")
+        elif helloworld.update('test', code):
+            result = helloworld.invoke('test', "{\"name\":\"World\"}")
+        else:
+            result = 'null'
         collection4.insert_one(new_entry)
 
     # Need to change result later

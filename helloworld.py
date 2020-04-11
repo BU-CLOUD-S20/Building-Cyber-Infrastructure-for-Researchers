@@ -2,6 +2,7 @@ import requests
 from urllib3.exceptions import InsecureRequestWarning
 import json
 
+
 def helloworld():
     url = "http://128.31.25.50/api/v1/namespaces/_/actions/helloPy?blocking=true&result=false"
     payload = "{\"name\":\"World\"}"
@@ -15,6 +16,7 @@ def helloworld():
     return response.json()
     # return response.text.encode('utf8')
 
+
 def create(name,payload):
     url = "https://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?overwrite=false"
     payload=format(name,payload)
@@ -26,6 +28,7 @@ def create(name,payload):
     response = requests.request("PUT", url, headers=headers, data=payload, verify=False)
     print(response.text.encode('utf8'))
     return True
+
 
 def invoke(name,payload):
     url = "http://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?blocking=true&result=false"
@@ -39,6 +42,7 @@ def invoke(name,payload):
     print(response.text.encode('utf8'))
     return response.json()
 
+
 def update(name,payload):
     url = "https://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?overwrite=true"
     payload = format(name, payload)
@@ -50,6 +54,8 @@ def update(name,payload):
     response = requests.request("PUT", url, headers=headers, data=payload, verify=False)
     print(response.text.encode('utf8'))
     return True
+
+
 def format(name,code):
     new_entry = {
                 "namespace": "_",
@@ -60,5 +66,7 @@ def format(name,code):
                     }
                 }
     return json.dumps(new_entry)
+
+
 if __name__ == "__main__":
     helloworld()
