@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "lead_dashboard.html" %}
 
 {% block content %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,21 +33,7 @@
                     </div>
                 </div>
             </nav>
-            <p> Profile </p>
-            <table style="width:100%">
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-            </tr>
-            <tr>
-                <td> {{username}} </td>
-                <td> {{email}} </td>
-                <td> {{role}} </td>
-            </tr>
-            </table>
 
-            <br>
-            <br>
+            {{result}}
 
 {% endblock %}

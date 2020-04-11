@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "lead_dashboard.html" %}
 
 {% block content %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,7 +20,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for( 'new_project' ) }}">New Projects</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
@@ -33,21 +33,24 @@
                     </div>
                 </div>
             </nav>
-            <p> Profile </p>
+            <p> Previous Computations </p>
             <table style="width:100%">
             <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Author</th>
+                <th>Computation Time</th>
+                <th>Code</th>
+                <th>Result</th>
             </tr>
+            {% for computation in computations %}
             <tr>
-                <td> {{username}} </td>
-                <td> {{email}} </td>
-                <td> {{role}} </td>
+                <td> {{computation[0]}} </td>
+                <td> {{computation[1]}} </td>
+                <td> <u> <a href= {{url_for("show_previous_code", timestamp=computation[1])}}> Code </a> </u> </td>
+                <td> <u> <a href= {{url_for("show_previous_result", timestamp=computation[1])}}> Result </a> </u> </td>
             </tr>
+            {% endfor %}
             </table>
 
             <br>
             <br>
-
 {% endblock %}

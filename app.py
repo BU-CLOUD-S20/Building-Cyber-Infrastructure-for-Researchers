@@ -28,7 +28,7 @@ import json
 
 # PyMongo Mongodb settings
 app = Flask(__name__)
-app.config["MONGO_URI"] = "..."
+app.config["MONGO_URI"] = "mongodb://admin:ec528bcifr@localhost:27017/admin"
 mongo = PyMongo(app)
 db = mongo.db
 collection = db['tempusers']
@@ -53,6 +53,13 @@ class RegForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Email(message='Invalid username'), Length(max=30)])
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=30)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=20)])
+
+
+class ProjectForm(FlaskForm):
+    name = StringField('name')
+    lead = StringField('lead')
+    size = StringField('size')
+    member = StringField('member')
 
 
 class CodeForm(FlaskForm):
@@ -139,7 +146,14 @@ def hello_world():
                  'result': str(result)
                  }
     collection4.insert_one(new_entry)
-    return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    if session[2] == 'student':
+        return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    elif session[2] == 'lead':
+        return render_template('lead_show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    elif session[2] == 'admin':
+        return render_template('admin_show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    else:
+        return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
 
 
 @app.route("/submit_code", methods=['POST'])
@@ -156,7 +170,16 @@ def submit_code():
                      'result': result
                     }
         collection4.insert_one(new_entry)
-    return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
+
+    # Need to change result later
+    if session[2] == 'student':
+        return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    elif session[2] == 'lead':
+        return render_template('lead_show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    elif session[2] == 'admin':
+        return render_template('admin_show_result.html', result=result['response']['result']['greeting'], name=session[0])
+    else:
+        return render_template('show_result.html', result=result['response']['result']['greeting'], name=session[0])
 
 
 @app.route("/dashboard/previous_computations", methods=['GET', 'POST'])
@@ -172,7 +195,14 @@ def previous_computations():
             computation_entry[3] = computation['result']
             computation_entries.append(computation_entry)
             computation_entry = ["", "", "", ""]
-    return render_template('previous_computations.html', computations=computation_entries, name=session[0])
+    if session[2] == 'student':
+        return render_template('previous_computations.html', computations=computation_entries, name=session[0])
+    elif session[2] == 'lead':
+        return render_template('lead_previous_computations.html', computations=computation_entries, name=session[0])
+    elif session[2] == 'admin':
+        return render_template('admin_previous_computations.html', computations=computation_entries, name=session[0])
+    else:
+        return render_template('previous_computations.html', computations=computation_entries, name=session[0])
 
 
 @app.route("/previous_code/<timestamp>", methods=['GET', 'POST'])
@@ -181,7 +211,14 @@ def show_previous_code(timestamp):
     timestamp.replace("%", " ")
     match = collection4.find_one({'date': str(timestamp)})
     result = json.dumps(match['code'], indent=2)
-    return render_template('show_result.html', result=result, name=session[0])
+    if session[2] == 'student':
+        return render_template('show_result.html', result=result, name=session[0])
+    elif session[2] == 'lead':
+        return render_template('lead_show_result.html', result=result, name=session[0])
+    elif session[2] == 'admin':
+        return render_template('admin_show_result.html', result=result, name=session[0])
+    else:
+        return render_template('show_result.html', result=result, name=session[0])
 
 
 @app.route("/previous_result/<timestamp>", methods=['GET', 'POST'])
@@ -190,7 +227,14 @@ def show_previous_result(timestamp):
     timestamp.replace("%", " ")
     match = collection4.find_one({'date': str(timestamp)})
     result = json.dumps(match['result'], indent=2)
-    return render_template('show_result.html', result=result, name=session[0])
+    if session[2] == 'student':
+        return render_template('show_result.html', result=result, name=session[0])
+    elif session[2] == 'lead':
+        return render_template('lead_show_result.html', result=result, name=session[0])
+    elif session[2] == 'admin':
+        return render_template('admin_show_result.html', result=result, name=session[0])
+    else:
+        return render_template('show_result.html', result=result, name=session[0])
 
 
 @app.route('/dashboard/new_project', methods=['GET', 'POST'])
@@ -221,9 +265,12 @@ def profile():
 @app.route('/dashboard/all_projects', methods=['GET', 'POST'])
 def all_projects():
     global session
+    form = ProjectForm()
+
     project_entries = []
     # name, lead, size, member
     project_entry = ["", "", "", []]
+
     for project in collection3.find():
         project_entry[0] = project['name']
         project_entry[1] = project['lead'][0]
@@ -232,7 +279,27 @@ def all_projects():
             project_entry[3].append(mem[0])
         project_entries.append(project_entry)
         project_entry = ["", "", "", [""]]
-    return render_template('admin_all_projects.html', name=session[0], projects=project_entries)
+
+    if request.method == "POST":
+        new_project = request.form
+        name = new_project['name']
+        lead = new_project['lead']
+        find_lead = collection.find_one({'username': lead})
+        size = new_project['size']
+        members = []
+        member_str = new_project['member']
+        member_names = member_str.split()
+        for name in member_names:
+            find_member = collection.find_one({'username': name})
+            members.append([name, find_member['email']])
+        new_entry = {'name': name,
+                     'lead': [lead, find_lead['email']],
+                     'size': size,
+                     'member': members
+                     }
+        collection3.insert_one(new_entry)
+        return render_template('admin_all_projects.html', name=session[0], projects=project_entries, form=form)
+    return render_template('admin_all_projects.html', name=session[0], projects=project_entries, form=form)
 
 
 @app.route('/dashboard/all_users', methods=['GET', 'POST'])

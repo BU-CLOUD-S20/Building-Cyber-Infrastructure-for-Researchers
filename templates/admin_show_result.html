@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "admin_dashboard.html" %}
 
 {% block content %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,21 +33,40 @@
                     </div>
                 </div>
             </nav>
-            <p> Profile </p>
-            <table style="width:100%">
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-            </tr>
-            <tr>
-                <td> {{username}} </td>
-                <td> {{email}} </td>
-                <td> {{role}} </td>
-            </tr>
-            </table>
 
+
+            {{result}}
             <br>
             <br>
+            <br>
+            <script src="../static/plotly-latest.min.js"></script>
+            <div id="tester" style="width:600px;height:250px;"></div>
+            <script>
+	            TESTER = document.getElementById('tester');
+	            Plotly.d3.json( TESTER, [{
+	                x: [1, 2, 3, 4, 5],
+	                y: [1, 2, 4, 8, 16] }], {
+	                margin: { t: 0 } } );
+            </script>
+            Plotly.d3.json('https://plotly.com/~DanielCarrera/13.json', function(figure){
+                  var trace = {
+                    x: figure.data[0].x, y: figure.data[0].y, z: figure.data[0].z,
+                    type: 'contour', autocolorscale: false,
+                    colorscale: [[0,"rgb(  0,  0,  0)"],[0.3,"rgb(230,  0,  0)"],[0.6,"rgb(255,210,  0)"],[1,"rgb(255,255,255)"]],
+                    reversescale: true, zmax: 2.5, zmin: -2.5
+                  };
+                  var layout = {
+                    title: 'turbulence simulation',
+                    xaxis: {title: 'radial direction', showline: true, mirror: 'allticks', ticks: 'inside'},
+                    yaxis: {title: 'vertical direction', showline: true, mirror: 'allticks', ticks: 'inside'},
+                    margin: {l: 40, b: 40, t: 60},
+                    annotations: [{
+                      showarrow: false,
+                      text: 'Credit: Daniel Carrera',
+                      x: 0, y: 0, xref: 'paper', yref: 'paper'
+                    }]
+                  }
+                  Plotly.newPlot(document.getElementById('contour-plot'), [trace], layout, {showLink: false});
+                });
 
 {% endblock %}
