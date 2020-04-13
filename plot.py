@@ -24,8 +24,8 @@ rawdata = (d['data'])['body']
 xdata = rawdata['x']
 ydata = rawdata['y']
 xlabel=rawdata['xlab']
-#fig = px.scatter(x=x_data, y=y_data)
-#fig.show()
+fig = px.scatter(x=x_data, y=y_data)
+fig.show()
 
 #for i in b['body']: #here i is body
 #	x_data=x
