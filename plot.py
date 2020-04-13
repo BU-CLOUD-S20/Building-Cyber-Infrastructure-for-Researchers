@@ -2,6 +2,9 @@
 import plotly.plotly as py
 from plotly.graph_objs import *
 import plotly.express as px
+import json
+
+
 '''
 previous group used json file with the following formatting:
 body: { 
@@ -11,8 +14,6 @@ body: {
  	 'x':[]
  	 }
 '''
-import json
-from numpy import array
 
 f=  open('view.json')
 d= json.load(f)
@@ -24,8 +25,10 @@ rawdata = (d['data'])['body']
 xdata = rawdata['x']
 ydata = rawdata['y']
 xlabel=rawdata['xlab']
-#fig = px.scatter(x=x_data, y=y_data)
-#fig.show()
+ylabel=rawdata['ylab']
+
+fig = px.scatter(x=x_data, y=y_data)
+fig.show()
 
 #for i in b['body']: #here i is body
 #	x_data=x
