@@ -1,20 +1,67 @@
 
-#import plotly.plotly as py
-#from plotly.graph_objs import *
-#import plotly.express as px
+import plotly.plotly as py
+from plotly.graph_objs import *
+import plotly.express as px
+'''
+previous group used json file with the following formatting:
+body: { 
+	'y':[],
+ 	'xlab': 'Time'
+ 	'ylab': 'Mean GCC'
+ 	 'x':[]
+ 	 }
+'''
 import json
 from numpy import array
 
-f=  open('test.json')
+f=  open('view.json')
 d= json.load(f)
-x=[]
-for i in d['data']:
-	int(i)
-	print (i["value"])
+y_data=[]
+x_data=[]
+
+rawdata = (d['data'])['body']
+
+xdata = rawdata['x']
+ydata = rawdata['y']
+xlabel=rawdata['xlab']
+#fig = px.scatter(x=x_data, y=y_data)
+#fig.show()
+
+#for i in b['body']: #here i is body
+#	x_data=x
+#	y_data=y
+#		print (i)
+'''
+	for j in i:
+		print ((j,i[j]))
+	
+	for x in loaded_json:
+	print("%s: %d" % (x, loaded_json[x]))
+
+	for j in i['body']: 
+		for k in j['y']:
+			y_data.append(k['y'])
+			
+		for l in j['x']:
+			x_data.append(l['x'])
+
 
 '''
+'''
+
+for i in d['data']:
+	int(i)
+
+for j in d
+	print (i["value"])p
+
+
 for j in d['values']:
-	y=j
+	x.append(i)
+	y.append(i['value'])
+fig=px.scatter(x=x_data,y=y_data)
+fig.show()
+plot_url = py.plot(fig)
 
 '''
 '''
