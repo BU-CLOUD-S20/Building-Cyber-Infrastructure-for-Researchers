@@ -3,8 +3,7 @@ import plotly.plotly as py
 from plotly.graph_objs import *
 import plotly.express as px
 import json
-
-
+from numpy import array
 '''
 previous group used json file with the following formatting:
 body: { 

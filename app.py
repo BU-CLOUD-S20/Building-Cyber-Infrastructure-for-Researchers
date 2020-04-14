@@ -17,19 +17,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 from flask_user import UserManager
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 class ConfigClass(object):
     """ Flask application config """
-=======
-from flask_mail import Mail
->>>>>>> 7994ba073c21660b5a1eec5cbb4a176ebfce4cdf
-
-=======
 from flask_mail import Mail
 
->>>>>>> e3535cc36e5c65556ab40346ece1897db9ee982d
 from flask_mail import Message
 
 import helloworld as helloworld
@@ -49,15 +41,9 @@ collection3 = db['projects']
 collection4 = db['wsk_results']
 
 app.config['SECRET_KEY'] = '...'
-<<<<<<< HEAD
 
 mail = Mail(app)
 
-=======
-
-mail = Mail(app)
-
->>>>>>> e3535cc36e5c65556ab40346ece1897db9ee982d
 # Session Management array: [username, email, role]
 session = ['', '', '']
 
