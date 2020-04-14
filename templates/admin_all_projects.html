@@ -1,0 +1,80 @@
+{% extends "admin_dashboard.html" %}
+
+{% block content %}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for( 'dashboard' ) }}">Submit New Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for( 'new_project' ) }}">New Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Compare Models</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Help</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <p> All Projects </p>
+            <table style="width:100%">
+            <tr>
+                <th>Project Name</th>
+                <th>Project Lead</th>
+                <th>Project Size</th>
+                <th>Project Members</th>
+            </tr>
+            {% for project in projects %}
+            <tr>
+                <td> {{project[0]}} </td>
+                <td> {{project[1]}} </td>
+                <td> {{project[2]}} </td>
+                <td>
+                    {% for mem in project[3] %}
+                        {{ mem }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+            </table>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <p> Create New Project </p>
+            <form method="POST" action="http://localhost:5000/dashboard/all_projects">
+                <input type="submit" value="Submit">
+                <p>  Project Name   {{ form.name }}</p>
+                <br/>
+                <p>  Project Lead   {{ form.lead }}</p>
+                <br/>
+                <p>  Project Size   {{ form.size }}</p>
+                <br/>
+                <p>Project Members  {{ form.member}}</p>
+                {{ form.hidden_tag() }}
+            </form>
+
+            <br>
+            <br>
+{% endblock %}
