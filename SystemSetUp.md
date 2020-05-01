@@ -14,7 +14,7 @@ PS2: use ansible-playbook -i setup.yml to automatically install couchdb
 
 [Creating a single control-plane cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
-[Deploy OpenWhisk on kubernetes](https://github.com/apache/openwhisk-deploy-kube)
+[Deploy OpenWhisk on kubernetes](https://github.com/apache/openwhisk-deploy-kube#using-a-kubernetes-cluster-you-built-yourself)
 
 PS: if you choose MOC, that means you are using a Kubernetes cluster you built yourself
 
