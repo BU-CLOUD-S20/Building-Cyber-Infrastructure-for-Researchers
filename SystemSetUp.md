@@ -6,4 +6,3 @@ Most of the system setup tutorials are coming from the official documents, becau
 
 ## 1. Kubernetes and OpenWhisk
 
-[link]: http://www.google.com/ "Google"
