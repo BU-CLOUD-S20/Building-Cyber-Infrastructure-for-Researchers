@@ -232,4 +232,4 @@
 
 ## 8.  Setup Manual
 
-Setup manual has instructions for setting up the system on any cloud environment.
+Setup manual has instructions for setting up the system on any cloud environment.[[link]](/SystemSetUp.md)
