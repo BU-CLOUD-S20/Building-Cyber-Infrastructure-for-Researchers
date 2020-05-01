@@ -28,7 +28,7 @@ PS: you can use helm upgrade to upgrade yaml
 
 [Cluster Management](https://kubernetes.io/docs/tasks/administer-cluster/cluster-management/)
 
-[join a node to the cluster](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-join/)
+[join a node to the cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#join-nodes)
 
 [Running in multiple zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/)
 
