@@ -33,3 +33,5 @@ PS: you can use helm upgrade to upgrade yaml
 [Running in multiple zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/)
 
 [Building large clusters](https://kubernetes.io/docs/setup/best-practices/cluster-large/)
+
+[Creating Highly Available clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
