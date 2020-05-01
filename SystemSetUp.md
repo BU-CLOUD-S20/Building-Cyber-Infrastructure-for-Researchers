@@ -6,3 +6,7 @@ Most of the system setup tutorials are coming from the official documents, becau
 
 ## 1. Kubernetes and OpenWhisk
 
+install openwhisk on native ubuntu [[Google]](http://www.google.com/)
+
+install openwhisk on native ubuntu [[Google]](http://www.google.com/)
+
