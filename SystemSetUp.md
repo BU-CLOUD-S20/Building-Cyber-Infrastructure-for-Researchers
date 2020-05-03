@@ -35,3 +35,33 @@ PS: you can use helm upgrade to upgrade yaml
 [Building large clusters](https://kubernetes.io/docs/setup/best-practices/cluster-large/)
 
 [Creating Highly Available clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
+
+<br>
+
+## 2. Web Interface
+
+- Local Depolyment
+
+  - Git clone the project to your local directory <br>
+        `git clone https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers.git`
+    
+  - [Set up local environment](https://flask.palletsprojects.com/en/1.1.x/installation/#installation) <br>
+        - Create the enviroment: `python3 -m venv venv` or `py -3 -m venv venv` on Windows <br>
+        - Activivate the environment: `. venv/bin/activate` or `venv\Scripts\activate` <br>
+        - Install Flask: `pip install Flask` <br>
+        - Install virtualenv: `sudo python2 Downloads/get-pip.py` and then `sudo python2 -m pip install virtualenv` <br>
+  
+  - Set up local MongoDB <br>
+        - [Download MongoDB community edition](https://docs.mongodb.com/manual/installation/#tutorial-installation) according to your operating system and following the installation guide <br>
+        - Run Mongo Shell (mongo.exe)  <br>
+        - Create a new database "admin": `use admin` <br>
+        - Create collections "tempusers", "projects", "wsk_results": <br>
+              `db.createCollection("tempusers")` <br>
+              `db.createCollection("projects")` <br>
+              `db.createCollection("wsk_results")` <br>
+            
+  - Run Application: `python -m flask run` <br>
+            
+- Web Server http://ecoforecast.bu.edu <br>
+  - Once the flask module is successfully deployed on the webserver, our users would be able to access our web interface via http://ecoforecast.bu.edu
+
