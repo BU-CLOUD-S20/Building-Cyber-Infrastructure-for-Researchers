@@ -230,6 +230,11 @@
    - [UI Demo Video](
    https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%205%20UI%20Demo.zip)
 
+<br/>Final Demo
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Final%20Presentation.pdf)
+   - [Presenation Video](
+   s://youtu.be/58M9R_qIkXc)
 ## 8.  Setup Manual
 
 Setup manual has instructions for setting up the system on any cloud environment.[[link]](/SystemSetUp.md)
