@@ -29,7 +29,7 @@ import json
 app = Flask(__name__)
 
 # PyMongo Mongodb settings
-app.config["MONGO_URI"] = "mongodb://admin:ec528bcifr@localhost:27017/admin"
+app.config["MONGO_URI"] = "..."
 mongo = PyMongo(app)
 db = mongo.db
 collection = db['tempusers']
