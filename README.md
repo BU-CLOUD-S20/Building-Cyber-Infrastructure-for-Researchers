@@ -223,3 +223,18 @@
    https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%204%20Presentation.pdf)
    - [UI Demo Video](
    https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%204%20UI%20Demo.zip)
+   
+<br/>Sprint 5
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%205%20Presentation.pdf)
+   - [UI Demo Video](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Sprint%205%20UI%20Demo.zip)
+
+<br/>Final Demo
+   - [Presentation Slides](
+   https://github.com/BU-CLOUD-S20/Building-Cyber-Infrastructure-for-Researchers/blob/master/Presentations/Final%20Presentation.pdf)
+   - [Presenation Video](
+   https://youtu.be/58M9R_qIkXc)
+## 8.  Setup Manual
+
+Setup manual has instructions for setting up the system on any cloud environment.[[link]](/SystemSetUp.md)
