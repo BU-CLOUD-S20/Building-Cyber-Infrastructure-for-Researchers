@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "admin_dashboard.html" %}
 
 {% block content %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,7 +21,7 @@
                                 <a class="nav-link" href="{{ url_for( 'new_project' ) }}">New Projects</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">View Previous Computations</a>
+                                <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Compare Models</a>
@@ -34,37 +34,30 @@
                 </div>
             </nav>
 
-            <p>Your Request has been successfully sent to jingsong@bu.edu</p>
-            <br>
-            <p>Search for New Projects</p>
-
-            {% from "formhelper.html" import render_field %}
-
-            <form method=post>
-
-            <dl>
-                <p>
-                {{ render_field(form.search) }}
-            </dl>
-                </p>
-                <input type=submit value=Search>
-            </form>
-            <br>
-            <br>
             <p> All Projects </p>
             <table style="width:100%">
             <tr>
                 <th>Project Name</th>
                 <th>Project Lead</th>
-                <th>Team Size</th>
-                <th>Request to Join</th>
+                <th>Project Size</th>
+                <th>Project Members</th>
+                <th>Request to join</th>
             </tr>
+            {% for project in projects %}
             <tr>
-                <td> <u>Snowstorm Prediction Model</u></td>
-                <td> <u>Jing Song </u></td>
-                <td> 0/5 </td>
-                <td> <button type="button" onclick="window.location.href='{{ url_for( 'email_request' ) }}';">Join</button> </td>
+                <td> {{project[0]}} </td>
+                <td> {{project[1]}} </td>
+                <td> {{project[2]}} </td>
+                <td>
+                    {% for mem in project[3] %}
+                        {{ mem }}
+                    {% endfor %}
+                </td>
+                <td> <u> <a href= {{url_for("email_request", project_name=project[0], project_lead=project[1])}}> Join </a> </u> </td>
             </tr>
+            {% endfor %}
             </table>
+            <br>
+            <br>
 
 {% endblock %}

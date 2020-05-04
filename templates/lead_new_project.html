@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "lead_dashboard.html" %}
 
 {% block content %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,7 +17,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for( 'dashboard' ) }}">Submit New Code</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="{{ url_for( 'new_project' ) }}">New Projects</a>
                             </li>
                             <li class="nav-item">
@@ -31,34 +31,40 @@
                 </div>
             </nav>
 
-            {{result}}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
 
+            <p> All Projects </p>
+            <table style="width:100%">
+            <tr>
+                <th>Project Name</th>
+                <th>Project Lead</th>
+                <th>Project Size</th>
+                <th>Project Members</th>
+                <th>Request to join</th>
+            </tr>
+            {% for project in projects %}
+            <tr>
+                <td> {{project[0]}} </td>
+                <td> {{project[1]}} </td>
+                <td> {{project[2]}} </td>
+                <td>
+                    {% for mem in project[3] %}
+                        {{ mem }}
+                    {% endfor %}
+                </td>
+                <td> <u> <a href= {{url_for("email_request", project_name=project[0], project_lead=project[1])}}> Join </a> </u> </td>
+            </tr>
+            {% endfor %}
+            </table>
             <br>
             <br>
-            <br>
-            <script src="../static/plotly-latest.min.js"></script>
-            <div id="myDiv" style="width:600px;height:600px;"></div>
-            <script>
-                var result = JSON.parse('{{ result | tojson | safe}}');
-                Plotly.d3.json(result, function(error, figure) {
-                    if(error) throw error;
-                    var trace1 = {
-                        x:figure.data[0].x,
-			            y:figure.data[0].y,
-			            marker: {color: "rgba(142,189,42,0.9)"},
-			            type: "scatter",
-                        mode: "lines",
-		            }
-		            var data = [trace1];
-		            var layout = {
-	                    title: "Openwhisk Result Plot",
-	                    titlefont: {
-		                    color: "#7f7f7f",
-		                    size: 18
-                        },
-	            };
-	            Plotly.plot('myDiv', data, layout);
-	            })
-            </script>
 
 {% endblock %}

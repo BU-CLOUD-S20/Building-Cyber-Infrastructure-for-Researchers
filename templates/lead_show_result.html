@@ -24,10 +24,7 @@
                                 <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Compare Models</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Help</a>
+                                <a class="nav-link" href="{{ url_for( 'help' ) }}">Help</a>
                             </li>
                         </ul>
                     </div>
@@ -35,5 +32,33 @@
             </nav>
 
             {{result}}
+
+            <br>
+            <br>
+            <br>
+            <script src="../static/plotly-latest.min.js"></script>
+            <div id="myDiv" style="width:600px;height:600px;"></div>
+            <script>
+                var result = JSON.parse('{{ result | tojson | safe}}');
+                Plotly.d3.json(result, function(error, figure) {
+                    if(error) throw error;
+                    var trace1 = {
+                        x:figure.data[0].x,
+			            y:figure.data[0].y,
+			            marker: {color: "rgba(142,189,42,0.9)"},
+			            type: "scatter",
+                        mode: "lines",
+		            }
+		            var data = [trace1];
+		            var layout = {
+	                    title: "Openwhisk Result Plot",
+	                    titlefont: {
+		                    color: "#7f7f7f",
+		                    size: 18
+                        },
+	            };
+	            Plotly.plot('myDiv', data, layout);
+	            })
+            </script>
 
 {% endblock %}

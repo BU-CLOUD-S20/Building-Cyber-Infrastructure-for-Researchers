@@ -24,15 +24,23 @@
                                 <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Compare Models</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Help</a>
+                                <a class="nav-link" href="{{ url_for( 'help' ) }}">Help</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
             <p> All Projects </p>
             <table style="width:100%">
             <tr>
@@ -40,6 +48,7 @@
                 <th>Project Lead</th>
                 <th>Project Size</th>
                 <th>Project Members</th>
+                <th>Action</th>
             </tr>
             {% for project in projects %}
             <tr>
@@ -51,6 +60,7 @@
                         {{ mem }}
                     {% endfor %}
                 </td>
+                <td> <u> <a href= {{url_for("remove_project", project_name=project[0])}}> Remove </a> </u> </td>
             </tr>
             {% endfor %}
             </table>
@@ -65,7 +75,7 @@
             <p> Create New Project </p>
             <form method="POST" action="http://localhost:5000/dashboard/all_projects">
                 <input type="submit" value="Submit">
-                <p>  Project Name   {{ form.name }}</p>
+                <p>  Project Name   {{ form.project_name }}</p>
                 <br/>
                 <p>  Project Lead   {{ form.lead }}</p>
                 <br/>

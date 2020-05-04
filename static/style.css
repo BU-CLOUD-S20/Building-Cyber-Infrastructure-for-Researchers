@@ -16,6 +16,11 @@ p {
     color: #999;
 }
 
+button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+}
+
 a,
 a:hover,
 a:focus {

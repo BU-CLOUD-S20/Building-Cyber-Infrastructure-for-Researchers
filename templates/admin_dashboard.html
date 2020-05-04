@@ -38,16 +38,10 @@
                     <a href="{{ url_for( 'all_users' ) }}">Manage Users</a>
                 </li>
                 <li>
-                    <a href="#ProfileSubmenu">VM Cluster Info</a>
-                </li>
-                <li>
                     <a href="{{ url_for( 'my_projects' ) }}">My Projects</a>
                 </li>
                 <li>
-                    <a href="#PasswordSubmenu">Change Password</a>
-                </li>
-                <li>
-                    <a href="#">Settings</a>
+                    <a href="{{ url_for( 'change_password' ) }}">Settings</a>
                 </li>
             </ul>
 
@@ -81,11 +75,11 @@
             });
         </script>
 
-        <footer style="position:fixed;bottom:0;width:100%;height:100px;text-align:center;">
+        <footer style="position:fixed;bottom:0;width:100%;height:50px;text-align:center;">
 
-                <p style="text-align:center;"><strong>Welcome to Ecoforecast!</strong></p>
+                <p style="text-align:center;font-size: 10px"><strong>Welcome to Ecoforecast!</strong></p>
 
-                <p style="text-align:center;">Copyright 2020 Tian Chen, Donovan Jones, Komal Kango, Jing Song, Kristi Perreault</p>
+                <p style="text-align:center;font-size: 10px">Copyright 2020 Tian Chen, Donovan Jones, Komal Kango, Jing Song, Kristi Perreault</p>
 
         </footer>
 

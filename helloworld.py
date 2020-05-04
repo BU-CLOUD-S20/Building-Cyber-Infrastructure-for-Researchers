@@ -44,7 +44,7 @@ def invoke(name,payload):
 
 
 def update(name,payload):
-    url = "https://128.31.25.50/api/v1/namespaces/_/actions/"+name+"?overwrite=true"
+    url = "https://128.31.25.50/api/v1/namespaces/_/actio0ns/"+name+"?overwrite=true"
     payload = format(name, payload)
     headers = {
         'Authorization': 'Basic MjNiYzQ2YjEtNzFmNi00ZWQ1LThjNTQtODE2YWE0ZjhjNTAyOjEyM3pPM3haQ0xyTU42djJCS0sxZFhZRnBYbFBrY2NPRnFtMTJDZEFzTWdSVTRWck5aOWx5R1ZDR3VNREdJd1A=',

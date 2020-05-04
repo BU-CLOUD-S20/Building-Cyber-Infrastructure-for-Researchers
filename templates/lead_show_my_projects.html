@@ -24,10 +24,7 @@
                                 <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Compare Models</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Help</a>
+                                <a class="nav-link" href="{{ url_for( 'help' ) }}">Help</a>
                             </li>
                         </ul>
                     </div>
@@ -49,6 +46,7 @@
                 <td>
                     {% for mem in project[3] %}
                         {{ mem }}
+                        <u> <a href= {{url_for("remove_member", project_name=project[0], member_name=mem)}}> Remove </a> </u>
                     {% endfor %}
                 </td>
             </tr>
@@ -80,4 +78,14 @@
             </table>
             <br>
             <br>
+
+            <p> Add Member to My Project </p>
+            <form method="POST" action="http://localhost:5000/dashboard/my_projects">
+                <p>  Project Name   {{ form.project_name }}</p>
+                <br/>
+                <p>  Member Name   {{ form.member_name }}</p>
+                <br/>
+                <input type="submit" value="Add">
+            </form>
+
 {% endblock %}

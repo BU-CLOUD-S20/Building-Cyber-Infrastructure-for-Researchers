@@ -24,29 +24,46 @@
                                 <a class="nav-link" href="{{ url_for( 'previous_computations' ) }}">View Previous Computations</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Compare Models</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Help</a>
+                                <a class="nav-link" href="{{ url_for( 'help' ) }}">Help</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <p>Search for New Projects</p>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
 
-            {% from "formhelper.html" import render_field %}
-
-            <form method=post>
-
-            <dl>
-                <p>
-                {{ render_field(form.search) }}
-            </dl>
-                </p>
-                <input type=submit value=Search>
-            </form>
+            <p> All Projects </p>
+            <table style="width:100%">
+            <tr>
+                <th>Project Name</th>
+                <th>Project Lead</th>
+                <th>Project Size</th>
+                <th>Project Members</th>
+                <th>Request to join</th>
+            </tr>
+            {% for project in projects %}
+            <tr>
+                <td> {{project[0]}} </td>
+                <td> {{project[1]}} </td>
+                <td> {{project[2]}} </td>
+                <td>
+                    {% for mem in project[3] %}
+                        {{ mem }}
+                    {% endfor %}
+                </td>
+                <td> <u> <a href= {{url_for("email_request", project_name=project[0], project_lead=project[1])}}> Join </a> </u> </td>
+            </tr>
+            {% endfor %}
+            </table>
             <br>
             <br>
 
