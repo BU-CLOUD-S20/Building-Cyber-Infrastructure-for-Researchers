@@ -2,7 +2,7 @@
 
 ### Mentors: Abraham Matta(matta@bu.edu), Ali Raza (araza@bu.edu)
 
-### Team Members: Tian Chen（ct970808@bu.edu), Donovan Jones（jonesde@bu.edu), Komal Kango（komalk@bu.edu), Jing Song (jingsong@bu.edu), Kristi Perreault（kristip@bu.edu
+### Team Members: Tian Chen（ct970808@bu.edu), Donovan Jones（jonesde@bu.edu), Komal Kango（komalk@bu.edu), Jing Song (jingsong@bu.edu), Kristi Perreault（kristip@bu.edu)
    <br/>	
 
 ## 1.  Vision and Goals Of The Project
