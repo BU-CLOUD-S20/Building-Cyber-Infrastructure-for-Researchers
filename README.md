@@ -238,3 +238,7 @@
 ## 8.  Setup Manual
 
 Setup manual has instructions for setting up the system on any cloud environment.[[link]](/SystemSetUp.md)
+
+## 9.  Related link
+
+previous project[[link]](https://github.com/akhtarnabeel/ecoforecastCS)
