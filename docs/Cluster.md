@@ -1,6 +1,9 @@
 # Kubernetes Cluster
-Our Kubernetes cluster is created with kind version: using a kind-cluster.yaml file that can be found using `ls` as soon as you log into the VM.
+The Kubernetes Cluster is a DIY cluster created with ubuntu using an [openwhisk deployment guide](https://github.com/apache/openwhisk-deploy-kube/blob/master/docs/k8s-diy-ubuntu.md)
 
-The setup file specifies a code node and a worker nodes that have all been labeled as such using 
-`kubectl label node kind-worker openwhisk-role=core`
-`kubectl label node kind-worker2 openwhisk-role=invoker`
+# Cluster Structure
+The master node was created by using `ifconfig docker0` to get the IP of the network interface of docker running on the MOC VM.
+
+To get the nodes of the cluster run: `kubectl get nodes`
+
+
