@@ -197,6 +197,12 @@
 <br/>
 <br/>
 
+## 6c.  Overall project - Actual and future work
+
+we build a kubernetes based on kind cluster and deploy openwhisk on it, and build a web sever page based on flask, using openwhisk api to interact with openwhisk. The protype only contains create, update action and invoker a action.
+
+
+
 ## 7.  Sprint Presentations
 <br/>Sprint 1
    - [Presentation Slides](
