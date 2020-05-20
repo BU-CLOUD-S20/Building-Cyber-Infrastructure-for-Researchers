@@ -6,4 +6,7 @@ The master node was created by using `ifconfig docker0` to get the IP of the net
 
 To get the nodes of the cluster run: `kubectl get nodes`
 
+Nodes can be added with:
+`kubeadm join 172.17.0.1:6443 --token 29am26.3fw2znktwbbff0we \
+    --discovery-token-ca-cert-hash sha256:eb32f7f58ae6907f26ed5c075ecd4ef6756d832b6c358fd4b2f408e52d18a369`
 
